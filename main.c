@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+//Creamos la estructura que seguira cada libro guardado
 struct inventario{
     char titulo[170];
     char autor[50];
@@ -14,29 +14,34 @@ struct inventario{
     char sede[50];
 };
 
-
-void Ver_la_base_de_datos;
-void Agregar_libro_nuevo;
-void Quitar_un_libro;
-void Agregar_una_sede;
-void Quitar_una_sede;
-void Editar_un_libro;
-void Cambiar_libro_de_sede;
-void Cambiar_libro_de_seccion;
-void Cambiar libro de seccion;
-void Cambiar_libro_de_piso;
-void Agregar_una_seccion;
-void Agregar_piso;
-void Eliminar_piso;
-void Buscar_un_libro;
-
+// Declaramos cada void que se utilizara ams adelante
+void Ver_la_base_de_datos(FILE *fp);
+void Agregar_libro_nuevo(FILE *fp);
+void Quitar_un_libro(FILE *fp);
+void Agregar_una_sede(FILE *fp);
+void Quitar_una_sede(FILE *fp);
+void Editar_un_libro(FILE *fp);
+void Cambiar_libro_de_sede(FILE *fp);
+void Cambiar_libro_de_seccion(FILE *fp);
+void Cambiar_libro_de_piso(FILE *fp);
+void Agregar_una_seccion(FILE *fp);
+void Eliminar_una_seccion(FILE *fp);
+void Agregar_piso(FILE *fp);
+void Eliminar_piso(FILE *fp);
+void Buscar_un_libro(FILE *fp);
+//Tambien creamos una flag que se utilizara como metodo de salida del do while
 int flag = 1;
 
-
+FILE * openingFile(char *filename){
+    FILE *fp;
+    fp = fopen(filename,"r");
+    return fp;
+}
 
 int main(int argc, char *argv[]){
-    int opc, n;
-
+    int opc;
+    FILE *fp = openingFile(argv[1]);
+    //aqui aplicar estructura de struct inventario al fp
     do{
         system("cls");
         printf("Menu de opciones\n");
@@ -58,106 +63,105 @@ int main(int argc, char *argv[]){
         scanf("%d", &opc);
         switch(opc){
             case 1:
-                break;
+                flag = 0;
             case 2:
                 printf("\n 2");
-                break;
+                flag = 0;
             case 3:
                 printf("\n 3");
-                break;
+                flag = 0;
             case 4:
                 printf("\n 4");
-                break;
+                flag = 0;
             case 5:
                 printf("\n 5");
-                break;
+                flag = 0;
             case 6:
                 printf("\n 6");
-                break;
+                flag = 0;
             case 7:
                 printf("\n 7");
-                break;
+                flag = 0;
             case 8:
                 printf("\n 8");
-                break;
+                flag = 0;
             case 9:
                 printf("\n 9");
-                break;
+                flag = 0;
             case 10:
                 printf("\n 10");
-                break;
+                flag = 0;
             case 11:
                 printf("\n 11");
-                break;
+                flag = 0;
             case 12:
                 printf("\n 12");
-                break;
+                flag = 0;
             case 13:
                 printf("\n 13");
-                break;
+                flag = 0;
             case 14:
                 printf("\n 14");
-                break;
+                flag = 0;
             default:
-                printf("Ingrese una opcion valida porfavor\n");
-                break;
-
+                printf("Intentelo nuevamente\n");
+                flag = 0;
         }
     }while(flag == 1);
+    fclose(fp);
 };
 
-void Ver_la_base_de_datos{
-
+void Ver_la_base_de_datos(FILE *fp){
+    printf("%c",fp);
 };
 
-void Agregar_libro_nuevo{
-
-};
-
-void Quitar_un_libro{
+void Agregar_libro_nuevo(FILE *fp){
 
 };
 
-void Agregar_una_sede{
+void Quitar_un_libro(FILE *fp){
 
 };
 
-void Quitar_una_sede{
+void Agregar_una_sede(FILE *fp){
 
 };
 
-void Editar_un_libro{
+void Quitar_una_sede(FILE *fp){
 
 };
 
-void Cambiar_libro_de_sede{
+void Editar_un_libro(FILE *fp){
+
+};
+void Cambiar_libro_de_sede(FILE *fp){
 
 };
 
-void Cambiar_libro_de_seccion{
+void Cambiar_libro_de_seccion(FILE *fp){
 
 };
 
-void Cambiar libro de seccion{
+void Cambiar_libro_de_piso(FILE *fp){
 
 };
 
-void Cambiar_libro_de_piso{
+void Agregar_una_seccion(FILE *fp){
 
 };
 
-void Agregar_una_seccion{
+void Eliminar_una_seccion(FILE *fp){
 
 };
 
-void Agregar_piso{
+void Agregar_piso(FILE *fp){
 
 };
 
-void Eliminar_piso{
+void Eliminar_piso(FILE *fp){
 
 };
 
-void Buscar_un_libro{
+void Buscar_un_libro(FILE *fp){
 
 };
