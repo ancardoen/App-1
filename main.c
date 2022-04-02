@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+extern int registryCount;
 //Creamos la estructura que seguira cada libro guardado
-struct inventario{
+struct INVENTARIO{
+    int id;
     char *titulo;
     char *autor;
-    int anio;
-    int estante_numero;
+    char *anio;
+    char *estante_numero;
     char *estante_seccion;
-    int piso;
+    char *piso;
     char *edificio;
     char *sede;
 };
+typedef struct INVENTARIO inventario;
 
 // Declaramos cada void que se utilizara ams adelante
 void Ver_la_base_de_datos(FILE *file);
@@ -29,6 +31,7 @@ void Eliminar_una_seccion(FILE *file);
 void Agregar_piso(FILE *file);
 void Eliminar_piso(FILE *file);
 void Buscar_un_libro(FILE *file);
+
 //Tambien creamos una flag que se utilizara como metodo de salida del do while
 int flag = 1;
 
@@ -38,10 +41,92 @@ FILE * openingFile(char *filename){
     return fp;
 }
 
+//Creamos la funcion que nos entregara la info del csv en forma de struct
+int registryCount = 0;
+inventario*getinfo(FILE*fp){
+    inventario*inven=(inventario*)malloc(5000*sizeof(inventario));
+    char row[1000];
+    char *token;
+    int cont = 0;
+    fgets(row,1000,fp);
+    while (!feof(fp)){
+        if (!feof(fp)){
+            //obtiene la linea siguiente
+            fgets(row, 1000, fp);
+            token = strtok(row, ",");
+            //print id first
+            inventario*inven = (inventario *) malloc(sizeof(inventario));;
+            //convierto el id en entero
+            int id = atoi(token);
+            //lo paso a la persona
+            inven->id = id;
+
+            //repito para las siguientes variables
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->titulo = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->titulo, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->autor = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->autor, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->anio = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->anio, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->estante_numero = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->estante_numero, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->estante_seccion = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->estante_seccion, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->piso = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->piso, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->edificio = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->edificio, token);
+
+            token = strtok(NULL, ",");
+            //inicializo el string en la estructura acorde al tamaño que venga del archivo
+            inven->sede = (char*)malloc( strlen(token) * sizeof(char));
+            //finalmente lo copio en el campo de persona
+            strcpy( inven->sede, token);
+
+            inven[cont] = *inven;
+            cont++;
+        }
+    }
+    //guardo la cantidad de registros que lei
+    registryCount = cont;
+    return inven;
+}
+
+
+
+
 int main(int argc, char *argv[]) {
     int opc;
     FILE *fp = openingFile(argv[1]);
-    //aqui aplicar estructura de struct inventario al fp
+    inventario *inven;
+    inven = getinfo(fp);
     while (flag == 1){
         system("cls");
         printf("Menu de opciones\n");
@@ -63,7 +148,12 @@ int main(int argc, char *argv[]) {
         scanf("%d", &opc);
         switch (opc) {
             case 1:
-                printf("Opcion 1 seleccionada");
+                printf("Opcion 1 seleccionada\n");
+                for (int i = 0; i < registryCount; ++i) {
+                    printf("%s \n", inven[i].titulo);
+                    /*printf("%s,%s,%s,%s", inven[i].titulo,inven[i].autor,inven[i].anio,inven[i].estante_numero);
+                    printf("%s,%s,%s,%s \n", inven[i].estante_seccion,inven[i].piso,inven[i].edificio,inven[i].sede);
+                */}
                 break;
             case 2:
                 printf("\n 2");
