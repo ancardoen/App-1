@@ -4,14 +4,14 @@
 
 //Creamos la estructura que seguira cada libro guardado
 struct inventario{
-    char titulo[170];
-    char autor[50];
+    char *titulo;
+    char *autor;
     int anio;
     int estante_numero;
-    char estante_seccion[50];
+    char *estante_seccion;
     int piso;
-    char edificio[10];
-    char sede[50];
+    char *edificio;
+    char *sede;
 };
 
 // Declaramos cada void que se utilizara ams adelante
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
     int opc;
     FILE *fp = openingFile(argv[1]);
     //aqui aplicar estructura de struct inventario al fp
-    do {
+    while (flag == 1){
         system("cls");
         printf("Menu de opciones\n");
         printf("1) Ver la  base de datos\n");
@@ -63,51 +63,52 @@ int main(int argc, char *argv[]) {
         scanf("%d", &opc);
         switch (opc) {
             case 1:
-                flag = 0;
+                printf("Opcion 1 seleccionada");
+                break;
             case 2:
                 printf("\n 2");
-                flag = 0;
+                break;
             case 3:
                 printf("\n 3");
-                flag = 0;
+                break;
             case 4:
                 printf("\n 4");
-                flag = 0;
+                break;
             case 5:
                 printf("\n 5");
-                flag = 0;
+                break;
             case 6:
                 printf("\n 6");
-                flag = 0;
+                break;
             case 7:
                 printf("\n 7");
-                flag = 0;
+                break;
             case 8:
                 printf("\n 8");
-                flag = 0;
+                break;
             case 9:
                 printf("\n 9");
-                flag = 0;
+                break;
             case 10:
                 printf("\n 10");
-                flag = 0;
+                break;
             case 11:
                 printf("\n 11");
-                flag = 0;
+                break;
             case 12:
                 printf("\n 12");
-                flag = 0;
+                break;
             case 13:
                 printf("\n 13");
-                flag = 0;
+                break;
             case 14:
                 printf("\n 14");
-                flag = 0;
+                break;
             default:
                 printf("Intentelo nuevamente\n");
-                flag = 0;
+                break;
         }
-    } while (flag == 1);
+    };
     fclose(fp);
     return 0;
 }
