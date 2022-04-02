@@ -15,20 +15,20 @@ struct inventario{
 };
 
 // Declaramos cada void que se utilizara ams adelante
-void Ver_la_base_de_datos(FILE *fp);
-void Agregar_libro_nuevo(FILE *fp);
-void Quitar_un_libro(FILE *fp);
-void Agregar_una_sede(FILE *fp);
-void Quitar_una_sede(FILE *fp);
-void Editar_un_libro(FILE *fp);
-void Cambiar_libro_de_sede(FILE *fp);
-void Cambiar_libro_de_seccion(FILE *fp);
-void Cambiar_libro_de_piso(FILE *fp);
-void Agregar_una_seccion(FILE *fp);
-void Eliminar_una_seccion(FILE *fp);
-void Agregar_piso(FILE *fp);
-void Eliminar_piso(FILE *fp);
-void Buscar_un_libro(FILE *fp);
+void Ver_la_base_de_datos(FILE *file);
+void Agregar_libro_nuevo(FILE *file);
+void Quitar_un_libro(FILE *file);
+void Agregar_una_sede(FILE *file);
+void Quitar_una_sede(FILE *file);
+void Editar_un_libro(FILE *file);
+void Cambiar_libro_de_sede(FILE *file);
+void Cambiar_libro_de_seccion(FILE *file);
+void Cambiar_libro_de_piso(FILE *file);
+void Agregar_una_seccion(FILE *file);
+void Eliminar_una_seccion(FILE *file);
+void Agregar_piso(FILE *file);
+void Eliminar_piso(FILE *file);
+void Buscar_un_libro(FILE *file);
 //Tambien creamos una flag que se utilizara como metodo de salida del do while
 int flag = 1;
 
@@ -38,11 +38,11 @@ FILE * openingFile(char *filename){
     return fp;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     int opc;
     FILE *fp = openingFile(argv[1]);
     //aqui aplicar estructura de struct inventario al fp
-    do{
+    do {
         system("cls");
         printf("Menu de opciones\n");
         printf("1) Ver la  base de datos\n");
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
         printf("14) Buscar un libro\n");
         printf("ingrese la opcion que quiera realizar: \n");
         scanf("%d", &opc);
-        switch(opc){
+        switch (opc) {
             case 1:
                 flag = 0;
             case 2:
@@ -107,61 +107,62 @@ int main(int argc, char *argv[]){
                 printf("Intentelo nuevamente\n");
                 flag = 0;
         }
-    }while(flag == 1);
+    } while (flag == 1);
     fclose(fp);
+    return 0;
+}
+
+void Ver_la_base_de_datos(FILE *file){
+    printf("Elegiste la opcion 1");
 };
 
-void Ver_la_base_de_datos(FILE *fp){
-    printf("%c",fp);
-};
-
-void Agregar_libro_nuevo(FILE *fp){
-
-};
-
-void Quitar_un_libro(FILE *fp){
+void Agregar_libro_nuevo(FILE *file){
 
 };
 
-void Agregar_una_sede(FILE *fp){
+void Quitar_un_libro(FILE *file){
 
 };
 
-void Quitar_una_sede(FILE *fp){
+void Agregar_una_sede(FILE *file){
 
 };
 
-void Editar_un_libro(FILE *fp){
-
-};
-void Cambiar_libro_de_sede(FILE *fp){
+void Quitar_una_sede(FILE *file){
 
 };
 
-void Cambiar_libro_de_seccion(FILE *fp){
+void Editar_un_libro(FILE *file){
+
+};
+void Cambiar_libro_de_sede(FILE *file){
 
 };
 
-void Cambiar_libro_de_piso(FILE *fp){
+void Cambiar_libro_de_seccion(FILE *file){
 
 };
 
-void Agregar_una_seccion(FILE *fp){
+void Cambiar_libro_de_piso(FILE *file){
 
 };
 
-void Eliminar_una_seccion(FILE *fp){
+void Agregar_una_seccion(FILE *file){
 
 };
 
-void Agregar_piso(FILE *fp){
+void Eliminar_una_seccion(FILE *file){
 
 };
 
-void Eliminar_piso(FILE *fp){
+void Agregar_piso(FILE *file){
 
 };
 
-void Buscar_un_libro(FILE *fp){
+void Eliminar_piso(FILE *file){
+
+};
+
+void Buscar_un_libro(FILE *file){
 
 };
