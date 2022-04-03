@@ -44,7 +44,7 @@ FILE * openingFile(char *filename){
 //Creamos la funcion que nos entregara la info del csv en forma de struct
 int registryCount = 0;
 inventario*getinfo(FILE*fp){
-    inventario*inven=(inventario*)malloc(5000*sizeof(inventario));
+    inventario*Inventario=(inventario*)malloc(5000*sizeof(inventario));
     char row[1000];
     char *token;
     int cont = 0;
@@ -110,24 +110,25 @@ inventario*getinfo(FILE*fp){
             //finalmente lo copio en el campo de persona
             strcpy( inven->sede, token);
 
-            inven[cont] = *inven;
+            Inventario[cont] = *inven;
             cont++;
         }
     }
     //guardo la cantidad de registros que lei
     registryCount = cont;
-    return inven;
+    return Inventario;
 }
 
 
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
     int opc;
     FILE *fp = openingFile(argv[1]);
     inventario *inven;
     inven = getinfo(fp);
-    while (flag == 1){
+    fclose(fp);
+    while (flag == 1) {
         system("cls");
         printf("Menu de opciones\n");
         printf("1) Ver la  base de datos\n");
@@ -146,14 +147,15 @@ int main(int argc, char *argv[]) {
         printf("14) Buscar un libro\n");
         printf("ingrese la opcion que quiera realizar: \n");
         scanf("%d", &opc);
+        flag = 0;
+        }
         switch (opc) {
             case 1:
                 printf("Opcion 1 seleccionada\n");
                 for (int i = 0; i < registryCount; ++i) {
-                    printf("%s \n", inven[i].titulo);
-                    /*printf("%s,%s,%s,%s", inven[i].titulo,inven[i].autor,inven[i].anio,inven[i].estante_numero);
+                    printf("%s,%s,%s,%s", inven[i].titulo,inven[i].autor,inven[i].anio,inven[i].estante_numero);
                     printf("%s,%s,%s,%s \n", inven[i].estante_seccion,inven[i].piso,inven[i].edificio,inven[i].sede);
-                */}
+                }
                 break;
             case 2:
                 printf("\n 2");
@@ -198,8 +200,7 @@ int main(int argc, char *argv[]) {
                 printf("Intentelo nuevamente\n");
                 break;
         }
-    };
-    fclose(fp);
+
     return 0;
 }
 
